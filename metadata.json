@@ -1,0 +1,8 @@
+{
+  "name": "Quadro de Desempenho Escolar",
+  "description": "Cuadro virtual de incentivo con estrellitas y emojis para actividades entregadas, ranking y certificado para el alumno destacado del mes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

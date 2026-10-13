@@ -1,0 +1,81 @@
+{
+  "entities": {
+    "Turma": {
+      "title": "Turma",
+      "description": "Turma ou sala de aula do quadro de desempenho",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 200 },
+        "teacherName": { "type": "string", "maxLength": 200 },
+        "schoolName": { "type": "string", "maxLength": 200 },
+        "monthlyGoal": { "type": "number" },
+        "monthlyRewardDescription": { "type": "string", "maxLength": 500 },
+        "starEmoji": { "type": "string", "maxLength": 50 },
+        "ownerId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" }
+      },
+      "required": ["id", "name", "teacherName", "schoolName", "monthlyGoal"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Conta de professor ou usuário para gerenciamento de seus próprios painéis",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "username": { "type": "string", "maxLength": 100 },
+        "name": { "type": "string", "maxLength": 200 },
+        "password": { "type": "string", "maxLength": 200 },
+        "schoolName": { "type": "string", "maxLength": 200 },
+        "email": { "type": "string", "maxLength": 200 },
+        "createdAt": { "type": "string", "maxLength": 100 }
+      },
+      "required": ["id", "username", "name", "password"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Aluno cadastrado em uma turma",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 200 },
+        "avatarColor": { "type": "string", "maxLength": 100 },
+        "turmaId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["id", "name", "turmaId", "active"]
+    },
+    "StickerRecord": {
+      "title": "StickerRecord",
+      "description": "Registro de estrelinha ou figurinha conquistada pelo aluno",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "studentId": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "emoji": { "type": "string", "maxLength": 30 },
+        "label": { "type": "string", "maxLength": 100 },
+        "activityTitle": { "type": "string", "maxLength": 300 },
+        "timestamp": { "type": "string", "maxLength": 100 },
+        "monthKey": { "type": "string", "maxLength": 30 }
+      },
+      "required": ["id", "studentId", "emoji", "label", "activityTitle", "timestamp", "monthKey"]
+    }
+  },
+  "firestore": {
+    "/turmas/{turmaId}": {
+      "schema": "Turma",
+      "description": "Coleção de turmas escolares do Rincón Hispano"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Coleção de alunos cadastrados"
+    },
+    "/stickers/{stickerId}": {
+      "schema": "StickerRecord",
+      "description": "Coleção de estrelinhas e conquistas de atividades entregues"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Coleção de contas de usuários/professores"
+    }
+  }
+}
